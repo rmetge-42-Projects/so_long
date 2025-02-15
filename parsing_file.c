@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 09:40:31 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/15 12:44:24 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/15 13:45:48 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,32 @@ int	file_ber(char *file)
 	return (ft_strncmp((file + i), ".ber", 4));
 }
 
+int	next_pos(int x)
+{
+	x++;
+	return(x);
+}
 
-//pas fini
+//tout pas bo tout moche bouuuuh
+int	path_1(t_vars *vars, int y, int x)
+{
+	// while (vars->maps[y][x] != 'P')
+	// {
+		// ft_printf("y = %i\n", y);
+		// ft_printf("%i\n", next_pos(y));
+		while (vars->maps[next_pos(y)][x] == '0')
+			y++;
+		// else if (vars->maps[y][next_pos(x)] == '0')
+		// 	x++;
+		if (vars->maps[next_pos(y)][x] == 'C' || vars->maps[y][next_pos(x)] == 'C')
+		{
+			vars->c--;
+			return (1);
+		}
+	// }
+	return (0);
+}
+
 int	true_path(t_vars *vars)
 {
 	int	y;
@@ -74,12 +98,8 @@ int	true_path(t_vars *vars)
 	x = vars->p[1];
 	while (vars->c > 0)
 	{
-		ft_printf("%c\n", vars->maps[y][x]);
-		y++;
-		while (vars->maps[y + 1][x] == '0')
-			y++;
-		if (vars->maps[y][x] == 'C')
-			vars->c--;
+		//ft_printf("%c\n", vars->maps[y][x]);
+		path_1(vars, y, x);
 
 	}
 	return (1);
