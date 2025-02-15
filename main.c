@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:55:27 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/13 13:23:07 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/15 10:13:48 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ int	main(int argc, char **argv)
 {
 	t_vars	vars;
 
-	vars.maps = parsing(argc, argv);
-	if (!vars.maps)
+	if (parsing(argc, argv, &vars) == 0)
 		return (1);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "So_long");
 	print_map(vars.maps);
 	mlx_hook(vars.win, 17, (1L << 17), mlx_loop_end, vars.mlx);
 	mlx_hook(vars.win, 2, (1L << 0), keypress, &vars);
