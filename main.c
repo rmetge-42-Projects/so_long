@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:55:27 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/17 13:35:39 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/17 18:53:32 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ int	keypress(int keycode, t_vars *vars)
 {
 	if (keycode == 65307)
 		mlx_loop_end(vars->mlx);
+	if (keycode == 119)
+		moov_w(vars);
+	if (keycode == 97)
+		moov_a(vars);
+	if (keycode == 115)
+		moov_s(vars);
+	if (keycode == 100)
+		moov_d(vars);
+	if (vars->c == 0 && vars->e == 0)
+		mlx_loop_end(vars->mlx);
 	return (0);
 }
 
@@ -49,8 +59,8 @@ int	main(int argc, char **argv)
 	mlx_hook(vars.win, 17, (1L << 17), mlx_loop_end, vars.mlx);
 	mlx_hook(vars.win, 2, (1L << 0), keypress, &vars);
 
-	
 	mlx_loop(vars.mlx);
+	print_map(vars.maps);
 	mlx_destroy_window(vars.mlx, vars.win);
 	mlx_destroy_display(vars.mlx);
 	ft_map_clear(vars.maps);

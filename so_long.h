@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:54:08 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/17 14:01:14 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/17 18:51:45 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_vars
 	void	*mlx;
 	void	*win;
 	char	**maps;
-	int		e[2];
+	int		e;
 	int		p[2];
 	int		c;
 }	t_vars;
@@ -35,5 +35,11 @@ char	**use_file(char *file);
 int		file_ber(char *file);
 int		true_path(t_vars *vars);
 int		file_null(char *file);
+int		moov_w(t_vars *vars);
+int		moov_a(t_vars *vars);
+int		moov_s(t_vars *vars);
+int		moov_d(t_vars *vars);
+int		next_p(int p);
+int		before_p(int p);
 
 #endif

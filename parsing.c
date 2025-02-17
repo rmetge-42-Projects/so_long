@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:13:19 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/17 17:06:47 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/17 18:53:05 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,12 @@ int	position(t_vars *vars, int y)
 			vars->p[0] = y;
 			vars->p[1] = x;
 		}
-		else if (vars->maps[y][x] == 'E' && vars->e[0] == -1)
-		{
-			vars->e[0] = y;
-			vars->e[1] = x;
-		}
+		else if (vars->maps[y][x] == 'E' && vars->e == 0)
+			vars->e = 1;
+		// {
+		// 	vars->e[0] = y;
+		// 	vars->e[1] = x;
+		// }
 		else if (vars->maps[y][x] == 'C')
 			vars->c++;
 		else if (vars->maps[y][x] != '1' && vars->maps[y][x] != '0')
@@ -102,15 +103,13 @@ int	parsing(int argc, char **argv, t_vars *vars)
 {
 	if (argc != 2)
 		return (ft_printf("Error\nNot the right number of arguments"), 0);
-	// if (access(argv[1], R_OK) == -1)
-	// 	return (ft_printf("Error\nYou don't have access"), 0);
 	if (file_ber(argv[1]) != 0)
 		return (ft_printf("Error\nNot a .ber file"), 0);
 	if (file_null(argv[1]) == 0)
 		return (ft_printf("Error\nFile is null"), 0);
 	vars->maps = use_file(argv[1]);
 	vars->p[0] = -1;
-	vars->e[0] = -1;
+	vars->e = 0;
 	vars->c = 0;
 	if (check_size(vars->maps) == 0)
 		return (ft_map_clear(vars->maps), ft_printf("Error\nNot good size"), 0);
