@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:13:19 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/17 14:12:59 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/17 17:06:47 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int	parsing(int argc, char **argv, t_vars *vars)
 {
 	if (argc != 2)
 		return (ft_printf("Error\nNot the right number of arguments"), 0);
-	if (access(argv[1], R_OK) == -1)
-		return (ft_printf("Error\nYou don't have access"), 0);
+	// if (access(argv[1], R_OK) == -1)
+	// 	return (ft_printf("Error\nYou don't have access"), 0);
 	if (file_ber(argv[1]) != 0)
 		return (ft_printf("Error\nNot a .ber file"), 0);
 	if (file_null(argv[1]) == 0)
