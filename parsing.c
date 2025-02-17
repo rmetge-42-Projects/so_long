@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:13:19 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/15 12:29:20 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/17 14:12:59 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_size(char **map)
 {
 	size_t	size;
-	int	i;
+	int		i;
 
 	size = ft_strlen(map[0]);
 	i = 0;
@@ -43,7 +43,7 @@ int	chek_mur(char **map)
 	while (map[l])
 	{
 		if (map[l][0] != '1' || map[l][ft_strlen(map[l]) - 1] != '1')
-			return(0);
+			return (0);
 		l++;
 	}
 	i = 0;
@@ -90,7 +90,7 @@ int	chek_val(t_vars *vars)
 	while (vars->maps[y])
 	{
 		if (position(vars, y) == 0)
-			return(0);
+			return (0);
 		y++;
 	}
 	if (vars->c == 0)
@@ -105,19 +105,22 @@ int	parsing(int argc, char **argv, t_vars *vars)
 	if (access(argv[1], R_OK) == -1)
 		return (ft_printf("Error\nYou don't have access"), 0);
 	if (file_ber(argv[1]) != 0)
-		return(ft_printf("Error\nNot a .ber file"), 0);
+		return (ft_printf("Error\nNot a .ber file"), 0);
+	if (file_null(argv[1]) == 0)
+		return (ft_printf("Error\nFile is null"), 0);
 	vars->maps = use_file(argv[1]);
 	vars->p[0] = -1;
 	vars->e[0] = -1;
 	vars->c = 0;
 	if (check_size(vars->maps) == 0)
 		return (ft_map_clear(vars->maps), ft_printf("Error\nNot good size"), 0);
-	if (chek_mur(vars->maps) == 0)
-		return (ft_map_clear(vars->maps),
-			ft_printf("Error\nNot framed by walls"), 0);
-	if (chek_val(vars) == 0)
+	if (chek_mur(vars->maps) == 0 || chek_val(vars) == 0)
 		return (ft_map_clear(vars->maps),
 			ft_printf("Error\nNot good values"), 0);
-	true_path(vars);
+	if (true_path(vars) == 0)
+		return (ft_map_clear(vars->maps),
+			ft_printf("Error\nNot good path"), 0);
+	ft_map_clear(vars->maps);
+	vars->maps = use_file(argv[1]);
 	return (1);
 }

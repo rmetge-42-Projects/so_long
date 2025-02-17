@@ -6,15 +6,15 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:55:27 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/15 10:13:48 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:35:39 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void print_map(char **map)
+void	print_map(char **map)
 {
-	int i = 0;
+	int	i = 0;
 
 	while (map[i])
 		ft_printf("%s\n", map[i++]);
@@ -48,6 +48,8 @@ int	main(int argc, char **argv)
 	print_map(vars.maps);
 	mlx_hook(vars.win, 17, (1L << 17), mlx_loop_end, vars.mlx);
 	mlx_hook(vars.win, 2, (1L << 0), keypress, &vars);
+
+	
 	mlx_loop(vars.mlx);
 	mlx_destroy_window(vars.mlx, vars.win);
 	mlx_destroy_display(vars.mlx);

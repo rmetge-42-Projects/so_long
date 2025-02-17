@@ -8,6 +8,7 @@ RM = rm -rf
 SRC = main.c\
 	parsing.c\
 	parsing_file.c\
+	true_path.c\
 
 OBJ_DIR = obj
 OBJS = $(SRC:%.c=$(OBJ_DIR)/%.o)
