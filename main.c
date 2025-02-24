@@ -6,18 +6,45 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:55:27 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/17 18:53:32 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/24 15:43:31 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_map(char **map)
+void	print_img(t_vars *vars, int i, int j, void *img_d)
 {
-	int	i = 0;
+	void	*img;
 
-	while (map[i])
-		ft_printf("%s\n", map[i++]);
+	if (vars->maps[i][j] == '1')
+		img = vars->img_1;
+	else if (vars->maps[i][j] == '0')
+		img = vars->img_0;
+	else if (vars->maps[i][j] == 'E')
+		img = vars->img_e;
+	else if (vars->maps[i][j] == 'C')
+		img = vars->img_c;
+	else
+		img = img_d;
+	mlx_put_image_to_window(vars->mlx, vars->win, img, j * 80, i * 80);
+}
+
+void	print_map(t_vars *vars, void *img_d)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (vars->maps[i])
+	{
+		j = 0;
+		while (vars->maps[i][j])
+		{
+			print_img(vars, i, j, img_d);
+			j++;
+		}
+		i++;
+	}
 }
 
 void	ft_map_clear(char **map)
@@ -34,16 +61,17 @@ int	keypress(int keycode, t_vars *vars)
 {
 	if (keycode == 65307)
 		mlx_loop_end(vars->mlx);
-	if (keycode == 119)
+	if (keycode == 119 || keycode == 65362)
 		moov_w(vars);
-	if (keycode == 97)
+	if (keycode == 97 || keycode == 65361)
 		moov_a(vars);
-	if (keycode == 115)
+	if (keycode == 115 || keycode == 65364)
 		moov_s(vars);
-	if (keycode == 100)
+	if (keycode == 100 || keycode == 65363)
 		moov_d(vars);
-	if (vars->c == 0 && vars->e == 0)
+	if (vars->c == 0 &&vars->e ==  0)
 		mlx_loop_end(vars->mlx);
+	ft_printf("%i\n", vars->cont);
 	return (0);
 }
 
@@ -54,13 +82,15 @@ int	main(int argc, char **argv)
 	if (parsing(argc, argv, &vars) == 0)
 		return (1);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "So_long");
-	print_map(vars.maps);
+	vars.win = mlx_new_window(vars.mlx, ft_strlen(vars.maps[0]) * 80,
+			strlen_file(argv[1]) * 80, "So_long");
+	init_img(&vars);
+	print_map(&vars, vars.img_w);
+	vars.cont = 0;
 	mlx_hook(vars.win, 17, (1L << 17), mlx_loop_end, vars.mlx);
 	mlx_hook(vars.win, 2, (1L << 0), keypress, &vars);
-
 	mlx_loop(vars.mlx);
-	print_map(vars.maps);
+	destroy_img(&vars);
 	mlx_destroy_window(vars.mlx, vars.win);
 	mlx_destroy_display(vars.mlx);
 	ft_map_clear(vars.maps);

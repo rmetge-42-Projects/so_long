@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 09:24:36 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/17 19:00:03 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/24 15:00:04 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ int	before_p(int p)
 		p--;
 	return (p);
 }
-
-// void	print_map1(char **map)
-// {
-// 	int	i = 0;
-
-// 	while (map[i])
-// 		ft_printf("%s\n", map[i++]);
-// }
 
 int	path_1(t_vars *vars, int y, int x)
 {
@@ -55,7 +47,6 @@ int	path_1(t_vars *vars, int y, int x)
 	if (vars->maps[y][before_p(x)] == '0' || vars->maps[y][before_p(x)] == 'C'
 		|| vars->maps[y][before_p(x)] == 'E')
 		c += path_1(vars, y, (x - 1));
-	//print_map1(vars->maps);
 	return (c);
 }
 

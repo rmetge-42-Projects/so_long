@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:13:19 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/17 18:53:05 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/24 15:31:10 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,6 @@ int	position(t_vars *vars, int y)
 		}
 		else if (vars->maps[y][x] == 'E' && vars->e == 0)
 			vars->e = 1;
-		// {
-		// 	vars->e[0] = y;
-		// 	vars->e[1] = x;
-		// }
 		else if (vars->maps[y][x] == 'C')
 			vars->c++;
 		else if (vars->maps[y][x] != '1' && vars->maps[y][x] != '0')
