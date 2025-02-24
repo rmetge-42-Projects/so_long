@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 09:40:31 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/24 15:32:13 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/24 15:47:52 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ int	file_null(char *file)
 	char	buffer;
 
 	fd = open(file, O_RDONLY);
-	if (fd == -1)
+	if (fd == -1 || read(fd, &buffer, 1) == 0)
+	{
+		close(fd);
 		return (0);
-	if (read(fd, &buffer, 1) == 0)
-		return (0);
+	}
+	close (fd);
 	return (1);
 }
