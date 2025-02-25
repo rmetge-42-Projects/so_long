@@ -10,7 +10,9 @@ SRC = main.c\
 	parsing_file.c\
 	true_path.c\
 	mouvement.c\
-	img.c
+	img.c\
+	ennemie.c\
+	ennemie_path.c
 
 OBJ_DIR = obj
 OBJS = $(SRC:%.c=$(OBJ_DIR)/%.o)

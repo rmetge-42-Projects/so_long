@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:54:08 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/24 15:18:18 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/25 18:48:42 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_vars
 	int		e;
 	int		p[2];
 	int		c;
+	int		m[3];
+	//int		m2[3];
 	void	*img_1;
 	void	*img_0;
 	void	*img_e;
@@ -34,6 +36,11 @@ typedef struct s_vars
 	void	*img_a;
 	void	*img_s;
 	void	*img_d;
+	void	*img_mw;
+	void	*img_md;
+	void	*img_mg;
+	void	*img_mder;
+	void	*img_m;
 	int		cont;
 }	t_vars;
 
@@ -53,5 +60,10 @@ int		before_p(int p);
 void	print_map(t_vars *vars, void *img_d);
 void	init_img(t_vars *vars);
 void	destroy_img(t_vars *vars);
+int		m_path(t_vars *vars);
+int		moov_md(t_vars *vars);
+int		moov_ma(t_vars *vars);
+int		moov_ms(t_vars *vars);
+int		moov_mw(t_vars *vars);
 
 #endif

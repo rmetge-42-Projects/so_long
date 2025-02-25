@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 14:55:57 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/24 14:56:20 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/25 18:53:25 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	init_img(t_vars *vars)
 	vars->img_s = mlx_xpm_file_to_image(vars->mlx, "./der.xpm", &img_w, &img_h);
 	vars->img_a = mlx_xpm_file_to_image(vars->mlx, "./gau.xpm", &img_w, &img_h);
 	vars->img_d = mlx_xpm_file_to_image(vars->mlx, "./dro.xpm", &img_w, &img_h);
+	vars->img_mw = mlx_xpm_file_to_image(vars->mlx, "./m.xpm", &img_w, &img_h);
+	vars->img_md = mlx_xpm_file_to_image(vars->mlx, "./md.xpm", &img_w, &img_h);
+	vars->img_mder = mlx_xpm_file_to_image(vars->mlx, "./mder.xpm", &img_w, &img_h);
+	vars->img_mg = mlx_xpm_file_to_image(vars->mlx, "./mg.xpm", &img_w, &img_h);
 }
 
 void	destroy_img(t_vars *vars)

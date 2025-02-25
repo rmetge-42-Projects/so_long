@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:13:19 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/24 15:31:10 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/25 17:55:37 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ int	position(t_vars *vars, int y)
 			vars->e = 1;
 		else if (vars->maps[y][x] == 'C')
 			vars->c++;
+		else if (vars->maps[y][x] == 'M' && vars->m[0] == -1)
+		{
+			vars->m[0] = y;
+			vars->m[1] = x;
+		}
 		else if (vars->maps[y][x] != '1' && vars->maps[y][x] != '0')
 			return (0);
 		x++;
@@ -107,6 +112,7 @@ int	parsing(int argc, char **argv, t_vars *vars)
 	vars->p[0] = -1;
 	vars->e = 0;
 	vars->c = 0;
+	vars->m[0] = -1;
 	if (check_size(vars->maps) == 0)
 		return (ft_map_clear(vars->maps), ft_printf("Error\nNot good size"), 0);
 	if (chek_mur(vars->maps) == 0 || chek_val(vars) == 0)
@@ -117,5 +123,6 @@ int	parsing(int argc, char **argv, t_vars *vars)
 			ft_printf("Error\nNot good path"), 0);
 	ft_map_clear(vars->maps);
 	vars->maps = use_file(argv[1]);
+	vars->maps[vars->m[0]][vars->m[1]] = 'M';
 	return (1);
 }
