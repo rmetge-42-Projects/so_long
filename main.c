@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:55:27 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/25 18:52:16 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/26 17:30:51 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void	print_map(t_vars *vars, void *img_d)
 		}
 		i++;
 	}
-	mlx_string_put(vars->mlx, vars->win, 10, 10, 0xFFFFFF, ft_itoa(vars->cont));
-	ft_printf("%i\n", vars->cont);
+	img_cont(vars);
 }
 
 void	ft_map_clear(char **map)
@@ -94,15 +93,17 @@ int	main(int argc, char **argv)
 	vars.win = mlx_new_window(vars.mlx, ft_strlen(vars.maps[0]) * 80,
 			strlen_file(argv[1]) * 80, "So_long");
 	init_img(&vars);
+	init_img_a(&vars);
 	vars.m[2] = 0;
 	vars.img_m = vars.img_mw;
-	//vars.m[2] = 0;
 	vars.cont = 0;
 	print_map(&vars, vars.img_w);
 	mlx_hook(vars.win, 17, (1L << 17), mlx_loop_end, vars.mlx);
 	mlx_hook(vars.win, 2, (1L << 0), keypress, &vars);
+	mlx_loop_hook(vars.mlx, print_a, &vars);
 	mlx_loop(vars.mlx);
 	destroy_img(&vars);
+	destroy_img_a(&vars);
 	mlx_destroy_window(vars.mlx, vars.win);
 	mlx_destroy_display(vars.mlx);
 	ft_map_clear(vars.maps);

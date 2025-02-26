@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:54:08 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/25 18:48:42 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/26 16:25:16 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,25 @@ typedef struct s_vars
 	void	*img_mw;
 	void	*img_md;
 	void	*img_mg;
-	void	*img_mder;
+	void	*img_ma;
 	void	*img_m;
+	void	*img_c1;
+	void	*img_c2;
+	void	*img_c3;
+	void	*img_c4;
+	void	*img_c5;
+	void	*img_c6;
+	void	*img_c7;
+	void	*img_c8;
+	void	*img_c9;
+	void	*img_c0;
+	void	*a1;
+	void	*a2;
+	void	*a3;
+	void	*a4;
+	void	*a5;
+	void	*a6;
+	void	*a7;
 	int		cont;
 }	t_vars;
 
@@ -65,5 +82,9 @@ int		moov_md(t_vars *vars);
 int		moov_ma(t_vars *vars);
 int		moov_ms(t_vars *vars);
 int		moov_mw(t_vars *vars);
+void	img_cont(t_vars *vars);
+int		print_a(t_vars *vars);
+void	init_img_a(t_vars *vars);
+void	destroy_img_a(t_vars *vars);
 
 #endif

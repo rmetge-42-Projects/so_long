@@ -12,7 +12,8 @@ SRC = main.c\
 	mouvement.c\
 	img.c\
 	ennemie.c\
-	ennemie_path.c
+	ennemie_path.c\
+	annimation.c
 
 OBJ_DIR = obj
 OBJS = $(SRC:%.c=$(OBJ_DIR)/%.o)
