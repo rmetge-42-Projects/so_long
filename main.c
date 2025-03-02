@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 09:55:27 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/26 17:30:51 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/28 13:14:41 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	print_map(t_vars *vars, void *img_d)
 	int	j;
 
 	i = 0;
-	m_path(vars);
+	if (vars->m[0] != -1)
+		m_path(vars);
 	while (vars->maps[i])
 	{
 		j = 0;

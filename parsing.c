@@ -6,7 +6,7 @@
 /*   By: rmetge <rmetge@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:13:19 by rmetge            #+#    #+#             */
-/*   Updated: 2025/02/25 17:55:37 by rmetge           ###   ########.fr       */
+/*   Updated: 2025/02/28 13:13:57 by rmetge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int	parsing(int argc, char **argv, t_vars *vars)
 			ft_printf("Error\nNot good path"), 0);
 	ft_map_clear(vars->maps);
 	vars->maps = use_file(argv[1]);
-	vars->maps[vars->m[0]][vars->m[1]] = 'M';
+	if (vars->m[0] != -1)
+		vars->maps[vars->m[0]][vars->m[1]] = 'M';
 	return (1);
 }
